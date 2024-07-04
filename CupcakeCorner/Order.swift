@@ -48,6 +48,10 @@ class Order: Codable {
             return false
         }
         
+        if name.isOnlyWhitespace() || streetAddress.isOnlyWhitespace() || city.isOnlyWhitespace() || zip.isOnlyWhitespace() {
+            return false
+        }
+        
         return true
     }
     
@@ -68,5 +72,11 @@ class Order: Codable {
         }
         
         return cost
+    }
+}
+
+extension String {
+    func isOnlyWhitespace() -> Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
